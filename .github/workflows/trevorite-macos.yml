@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         cachixName:
-          - jechol
+          - trevorite
         nixPath:
           - nixpkgs=channel:nixpkgs-unstable
         os: [macos-latest]
