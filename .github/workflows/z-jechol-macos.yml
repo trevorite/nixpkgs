@@ -12,29 +12,21 @@ on:
     - cron: "55 3 * * *"
 jobs:
   build:
-    strategy:
-      matrix:
-        cachixName:
-          - trevorite
-        nixPath:
-          - nixpkgs=channel:nixpkgs-unstable
-        os: [macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.3.4
       - name: Install nix
         uses: cachix/install-nix-action@v13
         with:
-          nix_path: "${{ matrix.nixPath }}"
+          nix_path: nixpkgs=channel:nixos-21.05
       - name: Show nixpkgs version
         run: nix-instantiate --eval -E '(import <nixpkgs> {}).lib.version'
       - name: Setup cachix
         uses: cachix/cachix-action@v10
-        if: ${{ matrix.cachixName != '' }}
         with:
-          name: ${{ matrix.cachixName }}
-          signingKey: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: jechol
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build nix packages
         run: nix-build . -A erlang -A elixir
         env:
