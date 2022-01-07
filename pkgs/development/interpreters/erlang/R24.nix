@@ -5,4 +5,5 @@
 mkDerivation {
   version = "24.1.6";
   sha256 = "sha256-Jh9w3+ft1RZjmb4PriCmHPj0tgkx8LBFjsg1s4BGojs=";
+  configureFlags = [ "--disable-jit" ];
 }
