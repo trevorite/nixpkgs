@@ -8,7 +8,7 @@ with beam; {
 
   # R24 is the default version.
   # The main switch to change default Erlang version.
-  defaultVersion = "erlangR24";
+  defaultVersion = "erlangR25";
 
   # Each
   interpreters = with beam.interpreters; {
