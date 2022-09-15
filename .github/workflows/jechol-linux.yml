@@ -36,6 +36,6 @@ jobs:
           name: ${{ matrix.cachixName }}
           signingKey: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build nix packages
-        run: nix-build . -A erlang -A elixir
+        run: nix-build . -A erlang -A elixir -A elixir_1_14
         env:
           NIXPKGS_ALLOW_INSECURE: 1
